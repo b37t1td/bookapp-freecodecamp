@@ -34,7 +34,7 @@ module.exports = function(app, db) {
 
   app.get('/api/auth/logout', function(req,res) {
     req.session.user = null;
-    res.redirect('/app');
+    res.redirect('/');
   });
 
   app.get('/api/auth/callback', function(req,res) {

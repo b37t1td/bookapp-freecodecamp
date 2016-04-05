@@ -1,0 +1,28 @@
+{{#if books.length}}
+<h3>Users Books Trade</h3>
+<hr />
+<div class="row book-items {{unless applicaiton.user.login 'public-books'}}">
+<div class="col-xs-12">
+{{#each othersBooks as |item|}}
+{{#if item.isTrading}}
+<div class="thumbnail pull-left">
+      <img src="{{item.image}}" alt="{{item.title}}">
+      <div class="caption">
+        <small>{{limit-text item.title}}</small>
+        {{#unless isLoading}}
+            {{#if application.user.login}}
+              <span class="btn btn-block btn-default" {{action 'takeBook' item}}>Take this Book</span>
+            {{/if}}
+        {{else}}
+        <div>
+          <i class="fa fa-spinner fa-spin"></i> wait please..
+        </div>
+        {{/unless}}
+      </div>
+    </div>
+{{/if}}
+{{/each}}
+</div>
+</div>
+
+{{/if}}

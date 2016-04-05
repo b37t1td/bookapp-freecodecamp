@@ -1,0 +1,19 @@
+{{#unless user.login}}
+<li class="login-button">
+  <span>
+  <a href="/api/auth/login" class="btn btn-social btn-default btn-github">
+    <i class="fa fa-github"></i>
+    Sign in with GitHub
+  </a>
+</span>
+</li>
+{{else}}
+<li class="dropdown user-login-info">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+      <a href="/"> {{if user.name user.name user.login}}</a>  <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li>{{#link-to 'profile'}}Profile{{/link-to}}</li>
+      <li><a href="/api/auth/logout">Logout</a></li>
+    </ul>
+</li>
+{{/unless}}

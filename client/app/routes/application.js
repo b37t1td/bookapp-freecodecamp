@@ -3,16 +3,16 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    return this.store.find('user', 'current');
+    return  Ember.RSVP.hash({
+      user : new Ember.RSVP.Promise(resolve => {
+              this.store.find('user', 'current')
+              .then(data => { resolve(data);} )
+              .catch(err => { resolve({});});
+           })
+   });
   },
 
   setupController(controller, model) {
-
-  },
-
-  actions: {
-     error(error, transition) {
-      // user not found
-     }
+    controller.set('user', model.user);
   }
 });

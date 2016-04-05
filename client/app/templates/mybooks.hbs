@@ -1,0 +1,92 @@
+
+
+<h3>Search</h3>
+
+{{#if isLoading}}
+<div>
+  <i class="fa fa-spinner fa-spin"></i> Loading...
+</div>
+{{else}}
+<div class="form-group">
+  {{input type="text" placeholder="Search books.."
+  class="form-control" enter='search' autofocus=true value=term}}
+</div>
+{{/if}}
+
+
+{{#if searchItems.length}}
+<h3>Search result: <span class="btn btn-info" {{action 'clearSearch'}}>Clear</span></h3>
+{{/if}}
+
+<div class="row book-items">
+<div class="col-xs-12">
+{{#each searchItems as |item|}}
+    <div class="thumbnail pull-left">
+          <img src="{{item.image}}" alt="{{item.title}}">
+          <div class="caption">
+            <small>{{limit-text item.title}}</small>
+            {{#unless isItemLoading}}
+              <span class="btn btn-block btn-default" {{action 'addBook' item}}>Add Book</span>
+            {{else}}
+            <div>
+              <i class="fa fa-spinner fa-spin"></i> wait please..
+            </div>
+            {{/unless}}
+          </div>
+        </div>
+{{/each}}
+</div>
+</div>
+
+{{#if myBooks}}
+
+<h3> My books Trading </h3>
+<hr />
+<div class="row book-items">
+<div class="col-xs-12">
+{{#each myBooks as |item|}}
+{{#if item.isTrading}}
+<div class="thumbnail pull-left">
+      <img src="{{item.image}}" alt="{{item.title}}">
+      <div class="caption">
+        <small>{{limit-text item.title}}</small>
+        {{#unless isItemLoading}}
+          <span class="btn btn-block btn-info" {{action 'unTradeBook' item}}>Remove from trading</span>
+        {{else}}
+        <div>
+          <i class="fa fa-spinner fa-spin"></i> wait please..
+        </div>
+        {{/unless}}
+      </div>
+    </div>
+{{/if}}
+{{/each}}
+</div>
+</div>
+
+<h3> My books </h3>
+<hr />
+<div class="row book-items">
+<div class="col-xs-12">
+{{#each myBooks as |item|}}
+{{#unless item.isTrading}}
+<div class="thumbnail pull-left">
+      <img src="{{item.image}}" alt="{{item.title}}">
+      <div class="caption">
+        <small>{{limit-text item.title}}</small>
+        {{#unless isItemLoading}}
+          <span class="btn btn-block btn-success" {{action 'tradeBook' item}}>Trade this Book</span>
+          <span class="btn btn-block btn-danger" {{action 'removeBook' item}}>Remove Book</span>
+        {{else}}
+        <div>
+          <i class="fa fa-spinner fa-spin"></i> wait please..
+        </div>
+        {{/unless}}
+      </div>
+    </div>
+{{/unless}}
+{{/each}}
+</div>
+</div>
+
+{{/if}}

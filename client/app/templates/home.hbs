@@ -1,0 +1,20 @@
+
+{{#if model.length}}
+<h3>Books</h3>
+<hr />
+<div class="row book-items public-books">
+<div class="col-xs-12">
+{{#each model as |item|}}
+{{#unless item.isTrading}}
+<div class="thumbnail pull-left">
+      <img src="{{item.image}}" alt="{{item.title}}">
+      <div class="caption">
+        <small>{{limit-text item.title}}</small>
+      </div>
+    </div>
+{{/unless}}
+{{/each}}
+</div>
+</div>
+
+{{/if}}

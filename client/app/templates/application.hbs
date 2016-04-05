@@ -8,16 +8,20 @@
             <span class="icon-bar"></span>
           </button>
           {{#link-to 'home' class="navbar-brand"}}
-            <i class="fa fa-star-o"></i>
+          <i class="fa fa-book"></i>
            Book Trading App
           {{/link-to}}
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li>{{#link-to 'home'}}Books{{/link-to}}</li>
+            <li>{{#link-to 'trade'}}Trade{{/link-to}}</li>
+          </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            {{#if places.length}}
-              <li>{{#link-to 'amgoing'}}My books{{/link-to}}</li>
+            {{#if user.login}}
+              <li>{{#link-to 'mybooks'}}My books{{/link-to}}</li>
             {{/if}}
             {{user-info}}
           </ul>

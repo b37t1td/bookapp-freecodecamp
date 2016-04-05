@@ -1,8 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  userId : DS.attr('Number'),
-  login  : DS.attr('String'),
-  image  : DS.attr('String'),
-  location : DS.attr('String')
+  login  : DS.attr('string'),
+  image  : DS.attr('string'),
+  name   : DS.attr('string'),
+  location : DS.attr('string')
 });
