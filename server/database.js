@@ -12,16 +12,26 @@ module.exports = function Database(callback) {
     callback();
   });
 
+
+  this.findUser = function(userId, cb) {
+    var logins = db.collection('logins');
+
+    logins.findOne({userId : userId}, function(err, data) {
+      if (err) return cb(err);
+      cb(null, data);
+    });
+  }
+
   this.createLogin = function(data, cb) {
     var logins = db.collection('logins');
     var userData = {
-      id : data.id,
+      userId : data.id,
       login : data.login,
       image : data.avatar_url,
       name : data.name,
       location : data.location
     };
-    logins.findOne({id : data.id}, function(err, data) {
+    logins.findOne({userId : data.id}, function(err, data) {
       if (err) return cb(err);
       if (data === null) {
         logins.insert(userData, function(err, data) {

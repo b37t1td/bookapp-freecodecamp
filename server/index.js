@@ -23,6 +23,7 @@ app.use(express.static('public'));
 db = new require('./database')(function() {
 
   require('./books')(app, db);
+  require('./user')(app, db);
 
   app.listen(process.env.PORT, function() {
     console.log('Application started on :' + process.env.PORT);
